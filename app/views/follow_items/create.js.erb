@@ -1,0 +1,11 @@
+
+console.log('new');
+$('#dialog h3').html("<i class='glyphicon glyphicon-plus'></i> choose your item to exchange");
+
+$('.modal-body').html('<%= j render("create") %>');
+$('#dialog').toggle();
+$('#dialog').modal("show");
+
+$('#dialog').on('shown.bs.modal', function () {
+	  $('.first_input').focus()
+  })

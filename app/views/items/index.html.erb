@@ -1,0 +1,26 @@
+<section class="my-items">
+  <header>
+    <h1 class="h3">My Item</h1>
+  </header>
+
+  <ol class="list-group">
+    <% @items.each do |item| %>
+      <li class="list-group-item clearfix">
+        <h3 class="pull-right">
+          <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' },
+            class: "btn btn-danger btn-xl" %>
+        </h3>
+        <h3><%= item.name %></h3>
+        <div class="media">
+          <%= link_to image_tag(item.item_images.first.image.url(:thumb),
+            class: 'media-object'),
+            item.item_images.first.image.url,
+            target: '_blank' %>
+        </div>
+        <h3><%= link_to 'Show', item, class: "btn btn-primary btn-xl" %></h3>
+        <h3><%= link_to 'Edit', edit_item_path(item), class: "btn btn-primary btn-xl" %></h3>
+        <h3><%= link_to 'New Item', new_item_path, class: "btn btn-primary btn-xl" %></h3>
+      </li>
+    <% end %>
+  </ol>
+</section>

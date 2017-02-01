@@ -19,6 +19,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, class: 'form-control'%>
+  </div>
+
   <%= f.submit "Sign up", class: "btn btn-primary btn-lg" %>
 <% end %>
 <%= render "devise/shared/links" %>
