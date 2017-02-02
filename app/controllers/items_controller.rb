@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @locations =  Location.all
+    @categories = Category.all
   end
 
   # POST /items
