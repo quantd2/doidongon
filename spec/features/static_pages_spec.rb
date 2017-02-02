@@ -2,59 +2,43 @@ require 'rails_helper'
 
 describe "Static pages" do
 
+  subject { page }
+
   describe "Home page" do
-    it "expect have the content 'give2get'" do
-      visit '/static_pages/home'
-      expect(page).to have_content('give2get')
-    end
+    before { visit root_path  }
 
-    it "should have the h1 'Give2Get'" do
-      visit '/static_pages/home'
-      expect(page).to have_selector('h1', :text => 'Give2Get')
-    end
-
-    it "should have the title 'Home'" do
-      visit '/static_pages/home'
-      expect(page).to have_selector('title',
-        :text => "Give2Get | Home", :visible => false)
-    end
+    it { expect have_content('give2get') }
+    it { expect have_selector('h1', text: 'Give2Get') }
+    it { expect(page).to have_selector('title',
+        :text => full_title(''), :visible => false) }
   end
 
 
   describe "Help page" do
-    it "should have the content 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_content('Help')
-    end
+    before { visit help_path }
 
-    it "should have the h1 'Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_selector('h1', :text => 'Help')
-    end
-
-    it "should have the title 'Give2Get - Help'" do
-      visit '/static_pages/help'
-      expect(page).to have_selector('title',
-        :text => "Give2Get | Help", :visible => false)
-    end
+    it { expect have_content('Help') }
+    it { expect have_selector('h1', text: 'Help') }
+    it { expect(page).to have_selector('title',
+        :text => full_title(''), :visible => false) }
   end
 
   describe "About page" do
-    it "should have the content 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_content('About Us')
-    end
+    before { visit about_path }
 
-    it "should have the h1 'About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_selector('h1', :text => 'About Us')
-    end
+    it { expect have_content('About Us') }
+    it { expect have_selector('h1', text: 'About Us') }
+    it { expect(page).to have_selector('title',
+        :text => full_title(''), :visible => false) }
+  end
 
-    it "should have the title 'Give2Get - About Us'" do
-      visit '/static_pages/about'
-      expect(page).to have_selector('title',
-        :text => "Give2Get | About Us", :visible => false)
-    end
+  describe "Contact page" do
+    before { visit contact_path }
+
+    it { expect have_content('Contact') }
+    it { expect have_selector('h1', text: 'Contact') }
+    it { expect(page).to have_selector('title',
+        :text => full_title(''), :visible => false) }
   end
 
 end

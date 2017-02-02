@@ -1,3 +1,39 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.social:hover {
+     -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -o-transform: scale(1.1);
+     background-color: white;
+ }
+ .social {
+     -webkit-transform: scale(0.8);
+     /* Browser Variations: */
+
+     -moz-transform: scale(0.8);
+     -o-transform: scale(0.8);
+     -webkit-transition-duration: 0.5s;
+     -moz-transition-duration: 0.5s;
+     -o-transition-duration: 0.5s;
+ }
+
+/*
+    Multicoloured Hover Variations
+*/
+footer div a:hover {
+  background-color: inherit;
+}
+
+.fa-facebook-square:hover {
+   color: #3B5998;
+}
+.fa-twitter-square:hover {
+   color: #4099FF;
+}
+.fa-google-plus-square:hover {
+   color: #d34836;
+}
+.fa-envelope-square:hover {
+   color: #f39c12;
+}
