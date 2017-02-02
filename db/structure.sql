@@ -77,36 +77,6 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
--- Name: follow_items; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE follow_items (
-    id integer NOT NULL,
-    follower_id integer,
-    interesting_id integer
-);
-
-
---
--- Name: follow_items_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE follow_items_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: follow_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE follow_items_id_seq OWNED BY follow_items.id;
-
-
---
 -- Name: item_images; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -278,7 +248,7 @@ CREATE TABLE users (
     avatar_file_size integer,
     avatar_updated_at timestamp without time zone,
     phone character varying,
-    location_id integer
+    admin boolean
 );
 
 
@@ -306,13 +276,6 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY follow_items ALTER COLUMN id SET DEFAULT nextval('follow_items_id_seq'::regclass);
 
 
 --
@@ -367,14 +330,6 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: follow_items_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY follow_items
-    ADD CONSTRAINT follow_items_pkey PRIMARY KEY (id);
-
-
---
 -- Name: item_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -420,20 +375,6 @@ ALTER TABLE ONLY schema_migrations
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: index_follow_items_on_follower_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_follow_items_on_follower_id ON follow_items USING btree (follower_id);
-
-
---
--- Name: index_follow_items_on_interesting_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_follow_items_on_interesting_id ON follow_items USING btree (interesting_id);
 
 
 --
@@ -493,13 +434,6 @@ CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_location_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_on_location_id ON users USING btree (location_id);
-
-
---
 -- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -512,14 +446,6 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 ALTER TABLE ONLY item_images
     ADD CONSTRAINT fk_rails_18c95d5ce3 FOREIGN KEY (item_id) REFERENCES items(id);
-
-
---
--- Name: fk_rails_5d96f79c2b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY users
-    ADD CONSTRAINT fk_rails_5d96f79c2b FOREIGN KEY (location_id) REFERENCES locations(id);
 
 
 --
@@ -559,13 +485,14 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170130072508'),
 ('20170130072822'),
 ('20170130072851'),
-('20170131040431'),
 ('20170131085617'),
 ('20170131090138'),
 ('20170131090636'),
 ('20170131092735'),
+('20170131093934'),
 ('20170201040320'),
 ('20170201040810'),
-('20170201141753');
+('20170201141753'),
+('20170202101914');
 
 
