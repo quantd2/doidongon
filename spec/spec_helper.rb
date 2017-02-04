@@ -10,6 +10,9 @@ Spork.prefork do
   ENV['RAILS_ENV'] ||= 'test'
   require File.expand_path('../../config/environment', __FILE__)
   require 'helpers/utilities'
+  FactoryGirl::SyntaxRunner.class_eval do
+    include ActionDispatch::TestProcess
+  end
 end
 
 Spork.each_run do

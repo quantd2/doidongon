@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  location_id :integer
+#  category_id :integer
+#
+
 class Item < ApplicationRecord
   belongs_to :user
   belongs_to :location

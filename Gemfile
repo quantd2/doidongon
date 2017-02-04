@@ -55,6 +55,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'spork'
   gem 'factory_girl_rails'
+  gem 'annotate'
 end
 
 group :development do

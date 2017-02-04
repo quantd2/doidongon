@@ -40,6 +40,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (7.1.4)
     aws-sdk (2.7.3)
       aws-sdk-resources (= 2.7.3)
@@ -256,6 +259,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   aws-sdk
   bower-rails
   byebug
