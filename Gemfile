@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # authentication
 gem 'devise'
+<<<<<<< 9586703f72809deccd1ec9d02c0b63be323d5a7a
 # amazon webservice
 gem 'aws-sdk'
 # Images
@@ -35,6 +36,11 @@ gem 'paperclip'
 gem 'bower-rails'
 
 gem "font-awesome-rails"
+=======
+gem 'bower-rails'
+gem 'paperclip'
+gem 'aws-sdk'
+>>>>>>> modif gem
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
