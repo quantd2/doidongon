@@ -54,6 +54,7 @@ group :development, :test do
   gem 'libnotify'
   gem 'guard-spork'
   gem 'spork'
+  gem 'factory_girl_rails'
 end
 
 group :development do
