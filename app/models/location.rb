@@ -11,6 +11,8 @@
 #
 
 class Location < ApplicationRecord
+  validates :city, length: { minimum: 1, maximum: 20 },
+                    presence: true, uniqueness: true
   has_many :items
 
 end

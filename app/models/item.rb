@@ -20,6 +20,8 @@ class Item < ApplicationRecord
 
   has_many :item_images, dependent: :delete_all
   #accepts_nested_attributes_for :item_images
+  default_scope {order(:created_at => :desc)}
+
   has_many :relationships,
     foreign_key: "follower_id",
     dependent: :destroy
@@ -35,7 +37,8 @@ class Item < ApplicationRecord
     through: :reverse_relationships,
     source: :follower
 
-  validates :name, presence: true
+  validates :name, length: { minimum: 1, maximum: 50 }, presence: true
+  validates :description, length: { minimum: 0, maximum: 300 }
 
   def following?(other_item)
     relationships.find_by_followed_id(other_item.id)

@@ -76,4 +76,31 @@ describe User do
       expect(@user.reload.email).to eq mixed_case_email.downcase
     end
   end
+
+  describe "item associations" do
+    before do
+      @user.save
+    end
+
+    let!(:older_item) do
+      FactoryGirl.create(:item, created_at: 1.month.ago, :user => @user)
+    end
+
+    let!(:newer_item) do
+      FactoryGirl.create(:item, created_at: 1.day.ago, user: @user)
+    end
+
+    it "should have the right item in the right order" do
+      expect(@user.items).to eq [newer_item, older_item]
+    end
+  end
+
+  it "should destroy associated microposts" do
+    items = @user.items
+    @user.destroy
+    items.each do |item|
+      Item.find_by_id(item.id).should_be nil
+    end
+  end
+
 end
