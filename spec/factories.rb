@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "person_#{n}@example.com"}
     password "foobar123"
     password_confirmation "foobar123"
+    sequence(:phone) { |n| "999999999#{n}"}
 
     factory :admin do
       admin true

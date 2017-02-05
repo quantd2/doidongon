@@ -1,12 +1,10 @@
 require 'rails_helper'
 
-
-
 describe "admin users pages" do
   subject { page }
   before(:all) { 30.times { FactoryGirl.create(:user) } }
   after(:all) { User.delete_all }
-  
+
   describe "index" do
     let(:admin) { FactoryGirl.create(:admin) }
     before(:each) do

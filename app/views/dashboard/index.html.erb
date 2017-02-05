@@ -1,21 +1,9 @@
-<section class="all-items">
-  <header>
-    <h1 class="h3">All Item</h1>
-  </header>
+<div class="row">
+  <h3>Items (<%= Item.count %>)</h3>
+  <div class="items">
+    <%= render @items %>
+  </div>
 
-  <ol class="list-group">
-    <% @items.each do |item| %>
-      <li class="list-group-item">
-        <h3><%= item.name %></h3>
-        <div class="media">
-          <%= link_to image_tag(item.item_images.first.image.url(:thumb),
-            class: 'media-object'),
-            item.item_images.first.image.url,
-            target: '_blank' %>
-        </div>
-      </li>
-    <% end %>
-  </ol>
+  <%= will_paginate @items %>
 
-  <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-</section>
+</div>

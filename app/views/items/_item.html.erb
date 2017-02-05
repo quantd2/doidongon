@@ -1,0 +1,15 @@
+<ul class="list-group">
+  <li class="list-group-item">
+  <h3><%= item.name %></h3>
+  <% if item.item_images.exists? %>
+    <div class="media">
+      <%= link_to image_tag(item.item_images.first.image.url(:thumb),
+        class: 'media-object'),
+        item.item_images.first.image.url,
+        target: '_blank' %>
+    </div>
+  <% else %>
+    No attachment available!
+  <% end %>
+</li>
+</ul>

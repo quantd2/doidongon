@@ -3,7 +3,7 @@ require 'rails_helper'
 describe User do
   before do
     @user = User.new(email: "user@example.com", password: "stinkydog",
-      password_confirmation: "stinkydog")
+      password_confirmation: "stinkydog", phone: "999999999")
   end
 
   subject { @user }
@@ -14,6 +14,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:items) }
+  it { should respond_to(:phone) }
   it { should be_valid }
 
   describe "admin should be nil by default" do
@@ -28,8 +29,13 @@ describe User do
     it { should_not be_valid }
   end
 
-  describe "when password not present" do
+  describe "when password is not present" do
     before { @user.password = "" }
+    it { should_not be_valid }
+  end
+
+  describe "when phone is not present" do
+    before { @user.phone = "" }
     it { should_not be_valid }
   end
 

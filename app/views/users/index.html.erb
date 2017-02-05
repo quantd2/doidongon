@@ -1,18 +1,22 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
+<div class="row">
+  <h1>All users</h1>
 
-<%= will_paginate @users%>
+  <%= will_paginate @users%>
 
-<table id class="table table-bordered table-striped">
-  <thead>
-  <tr>
-    <th>email</th>
-    <th>item count</th>
-  </tr>
-  </thead>
-  <tbody id="users">
-    <%= render @users %>
-  </tbody>
-</table>
+  <table id class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>email</th>
+      <th>item count</th>
+    </tr>
+    </thead>
+    <tbody id="users">
+      <%= render @users %>
+    </tbody>
+  </table>
 
-<%= will_paginate @users%>
+  <%= will_paginate @users%>
+  
+</div>
