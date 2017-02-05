@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe "user page" do
+
   subject { page }
   let(:user) { FactoryGirl.create(:user) }
   before { sign_in user }
@@ -14,7 +15,7 @@ describe "user page" do
     let!(:i2) { FactoryGirl.create(:item, user: user) }
 
     before { visit user_path(user) }
-    it { should have_selector('h1', text: "My Item") }
+    it { should have_selector('h3', text: "My Item") }
     it { should have_selector('title', text: user.email, visible: false) }
 
     describe "item" do

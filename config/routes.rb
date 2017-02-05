@@ -14,11 +14,13 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :locations
-  resources :items do
-    member do
-      get :following, :followers
-    end
-  end
+
+  resources :items, only: [:create, :destroy, :update]
+  # resources :items do
+  #   member do
+  #     get :following, :followers
+  #   end
+  # end
   resources :relationships, only: [:create, :destroy]
 
   devise_for :users, path_prefix: 'd'

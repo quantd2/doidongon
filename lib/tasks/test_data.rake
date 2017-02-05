@@ -37,7 +37,7 @@ namespace :db do
     items = Item.all.limit 20
     3.times do
       items.each do |item|
-        item.item_images.create!( image_file_name: File.open(
+        item.item_images.create!( image: File.open(
                       Dir.glob(
                       File.join(
                       Rails.root, 'spec/photos', '*')).sample))
