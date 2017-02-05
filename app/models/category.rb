@@ -9,7 +9,7 @@
 #
 
 class Category < ApplicationRecord
-  validates :name, length: { minimum: 1, maximum: 20 },
+  validates :name, length: { minimum: 1, maximum: 30 },
                     presence: true, uniqueness: true
   has_many :items
 end
