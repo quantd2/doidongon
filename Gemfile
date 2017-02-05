@@ -58,6 +58,7 @@ group :development, :test do
   gem 'spork'
   gem 'factory_girl_rails'
   gem 'annotate'
+  gem 'faker'
 end
 
 group :development do

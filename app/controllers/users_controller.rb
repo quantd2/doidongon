@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @items = current_user.items
+    @items = @user.items.paginate(page: params[:page])
   end
 
 end
