@@ -1,0 +1,9 @@
+<tr id="user_<%= user.id %>">
+  <td><%= user.email %></td>
+  <td><%= user.items.count %></td>
+  <td><%= link_to user.email, user %></td>
+  <td>
+    <%= link_to 'Delete', user, remote: true, :method => :delete,
+          data: {confirm: "Delete User: #{user.email}"}, :class => 'btn btn-sm btn-danger' %>
+  </td>
+</tr>

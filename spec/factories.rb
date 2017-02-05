@@ -3,18 +3,12 @@ FactoryGirl.define do
     sequence(:email) { |n| "person_#{n}@example.com"}
     password "foobar123"
     password_confirmation "foobar123"
+
+    factory :admin do
+      admin true
+    end
   end
 end
-
-# FactoryGirl.define do
-#   factory :item do
-#     name "moby dick"
-#     description "greate book about whale"
-#     user
-#     location
-#     category
-#   end
-# end
 
 FactoryGirl.define do
   factory :item_image do

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :verify_is_admin, except: [:show]
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def destroy
