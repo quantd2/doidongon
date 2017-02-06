@@ -13,7 +13,7 @@
     <div class="container">
       <% if notice.present? %>
         <aside class="alert alert-info">
-          <%= notice %>
+          <%= flash[:notice] %>
         </aside>
       <% end %>
       <% if alert.present? %>

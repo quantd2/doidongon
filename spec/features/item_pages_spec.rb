@@ -36,4 +36,14 @@ describe "Items pages" do
       end
     end
   end
+
+  describe "item destruction" do
+    let!(:item) { FactoryGirl.create(:item, user: user) }
+    describe "as correct user" do
+      before { visit items_path }
+      it "should delete a item" do
+        expect { click_on "Delete" }.to change(Item, :count).by(-1)
+      end
+    end
+  end
 end

@@ -34,7 +34,10 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.save
         set_image
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html {
+          flash[:notice] = 'Item was successfully created.'
+          redirect_to  action: :index
+        }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -49,7 +52,9 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         set_image
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html {
+          redirect_to @item
+          flash[:notice] = 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -69,22 +74,33 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = current_user.items.find(params[:id])
+  end
 
-    def set_image
-      if params[:images]
-        #===== The magic is here ;)
-        params[:images].each { |image|
-          @item.item_images.create(image: image)
-        }
-      end
+  def set_image
+    if params[:images]
+      #===== The magic is here ;)
+      params[:images].each { |image|
+        @item.item_images.create(image: image)
+      }
+    else
+      @item.item_images.create if @item.item_images.nil?
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:name, :description, :location_id, :category_id)
-    end
+  # def clear_default_image
+  #   if @item.item_images.count > 1
+  #      images = @item.item_images.image_name
+  #      images.each { |image|
+  #        image.image_file_name.include "potato"
+  #      }
+  #   end
+  # end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.require(:item).permit(:name, :description, :location_id, :category_id)
+  end
 end

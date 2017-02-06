@@ -34,14 +34,18 @@ namespace :db do
       end
     end
 
-    items = Item.all.limit 20
-    3.times do
-      items.each do |item|
-        item.item_images.create!( image: File.open(
-                      Dir.glob(
-                      File.join(
-                      Rails.root, 'spec/photos', '*')).sample))
-      end
+    items = Item.offset(rand(Item.count)).limit 30
+    items.each do |item|
+      item.item_images.create!( image: File.open(
+                    Dir.glob(
+                    File.join(
+                    Rails.root, 'spec/photos', '*')).sample))
+    end
+
+
+    items = Item.offset(rand(Item.count)).limit 30
+    items.each do |item|
+      item.item_images.create
     end
   end
 end

@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <li class="list-group-item">
+  <li class="list-group-item clearfix">
   <h3><%= item.name %></h3>
   <% if item.item_images.exists? %>
     <div class="media">
@@ -12,5 +12,9 @@
   <% else %>
     No attachment available!
   <% end %>
+  <%= link_to 'Delete', item,
+      :method => :delete,
+      data: {confirm: "Delete Item: #{item.name}"},
+      :class => 'btn btn-sm btn-danger clear-fix pull-right' %>
 </li>
 </ul>
