@@ -1,15 +1,5 @@
 <%= form_for @item, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
-
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <div  class="form-group">
     <%= f.label :name %>
@@ -36,13 +26,13 @@
 
   <div class="form-group">
     <%= f.collection_select :location_id, @locations, :id, :city,
-      {include_blank: 'Please Select'},
+      {include_blank: 'Please select the location'},
       {class: 'selectpicker chosen-select' 'form-control'} %>
   </div>
 
   <div class="form-group">
     <%= f.collection_select :category_id, @categories, :id, :name,
-      {include_blank: 'Please Select'},
+      {include_blank: 'Please select item category'},
       {class: 'selectpicker chosen-select' 'form-control'} %>
   </div>
 

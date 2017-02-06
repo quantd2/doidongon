@@ -22,6 +22,6 @@ module Doidongon
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.active_record.schema_format = :sql
-
+    #Paperclip::Attachment.default_options[:default_url] = "/public/images/missing/:styles/Potato.png"
   end
 end

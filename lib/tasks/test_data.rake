@@ -20,7 +20,7 @@ namespace :db do
       Location.create!( city: Faker::Address.city )
     end
 
-    6.times do
+    4.times do
       Category.create!( name: Faker::Space.meteorite )
     end
 

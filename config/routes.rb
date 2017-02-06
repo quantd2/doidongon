@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :locations
 
-  resources :items, only: [:create, :destroy, :update]
+  resources :items
   # resources :items do
   #   member do
   #     get :following, :followers

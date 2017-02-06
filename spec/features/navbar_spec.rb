@@ -1,6 +1,16 @@
 require 'rails_helper'
 
-describe "navigation when user logs in" do
+
+describe "navigation bar default" do
+  subject { page }
+  before { visit root_path }
+  it { should have_selector('li'), text: "Home" }
+  it { should have_selector('li'), text: "Help" }
+  it { should have_selector('li', text: "Post Item") }
+end
+
+
+describe "navigation bar when user logs in" do
   subject { page }
   let(:user) { FactoryGirl.create(:user) }
   before do
@@ -8,9 +18,11 @@ describe "navigation when user logs in" do
     visit user_path(user)
   end
   it { should have_selector('li', text: "Log Out") }
+  it { should have_selector('li', text: "My Items") }
+  it { should_not have_selector('li', text: "Log In") }
 end
 
-describe "navigation when user not log in" do
+describe "navigation bar when user not log in" do
   subject { page }
   let(:user) { FactoryGirl.create(:user) }
   before do

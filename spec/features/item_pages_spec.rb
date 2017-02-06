@@ -3,25 +3,36 @@ require 'rails_helper'
 describe "Items pages" do
   subject { page }
   let(:user) { FactoryGirl.create(:user) }
-  before { sign_in user }
+  before do
+    sign_in user
+    Category.create(name: "cat1")
+    Location.create(city: "loc1")
+  end
 
-  describe "micropost creation" do
-    before { visit root_path }
+  describe "item creation" do
+    before do
+      visit root_path
+      click_on "Post Item"
+    end
     describe "with invalid information" do
-      it "should not create a micropost" do
-        expect { click_button "Post" }.should not_change(Item, :count)
+      it "should not create a item" do
+        expect { click_button "Create Item" }.not_to change(Item, :count)
       end
 
     describe "error messages" do
-      before { click_button "Post" }
-        it { should_have content('error') }
+      before { click_on "Create Item" }
+        it { should have_content('error') }
       end
     end
 
     describe "with valid information" do
-      before { fill_in 'item name', with: "Harry Potter" }
+      before do
+        fill_in 'item_name', with: "Harry Potter"
+        select "1", from: "item_location_id"
+        select "1", from: "item_category_id"
+      end
       it "should create a item" do
-        expect { click_button "Post" }.should change(Item, :count).by(1)
+        expect { click_button "Create Item" }.to change(Item, :count).by(1)
       end
     end
   end

@@ -1,9 +1,9 @@
-<section class="my-items">
-  <header>
-    <h1 class="h3">My Item</h1>
-  </header>
+<div class="row">
+  <h3>My <%= pluralize( @items.count, 'Item') %></h3>
+  <div class="items">
+    <%= render @items %>
+  </div>
 
-  <ol class="items">
-    <% render @items %>
-  </ol>
-</section>
+  <%= will_paginate @items %>
+
+</div>

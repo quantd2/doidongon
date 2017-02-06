@@ -1,16 +1,16 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
-  # def index
-  #   @items = current_user.items.all
-  # end
+  def index
+    @items = current_user.items.paginate(page: params[:page])
+  end
 
   # GET /items/1
   # GET /items/1.json
-  # def show
-  # end
+  def show
+  end
 
   # GET /items/new
   def new
@@ -29,7 +29,8 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = current_user.items.new(item_params)
-    #@locations =  Location.find(item_params.location_attributes)
+    @locations =  Location.all
+    @categories = Category.all
     respond_to do |format|
       if @item.save
         set_image
@@ -70,7 +71,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Items.find(params[:id])
+      @item = Item.find(params[:id])
     end
 
     def set_image
@@ -84,6 +85,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:item_id, :name, :description, :location_id, :category_id)
+      params.require(:item).permit(:name, :description, :location_id, :category_id)
     end
 end

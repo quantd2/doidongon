@@ -5,7 +5,8 @@
     <div class="media">
       <%= link_to image_tag(item.item_images.first.image.url(:thumb),
         class: 'media-object'),
-        item.item_images.first.image.url,
+        #item.item_images.first.image.url,
+        item_path(item),
         target: '_blank' %>
     </div>
   <% else %>
