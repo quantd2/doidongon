@@ -85,12 +85,10 @@ class ItemsController < ApplicationController
       params[:images].each { |image|
         @item.item_images.create(image: image)
       }
-    else
-      @item.item_images.create if @item.item_images.nil?
     end
   end
 
-  # def clear_default_image
+  # => def clear_default_image
   #   if @item.item_images.count > 1
   #      images = @item.item_images.image_name
   #      images.each { |image|

@@ -12,18 +12,34 @@
   </div>
 
   <div class="form-group">
-     <%= f.label :item_images, :class => 'form-label' %>
-     <div class="controls">
+    <%= f.label :item_images, :class => 'form-label' %>
+    <div class="controls">
        <!-- The magic is coming ...look at my eyes....shazammmm -->
        <!-- Use HTML5 multiple attribute to enable multiple selection
             and pass back to controller all files as an array, ready
             for paperclip!!
             file_field_tag, since images is not a gallery attribute
         -->
-       <%= file_field_tag "images[]", type: :file,
-            multiple: true, class: 'form-control' %>
-     </div>
-   </div>
+        <%= file_field_tag "images[]", type: :file,
+          multiple: true, class: 'form-control' %>
+    </div>
+  </div>
+
+  <!-- <input type='file' onchange="readURL(this);" />
+  <img id="img_prev" src="#" alt="your image" /> -->
+  
+  <article>
+    <div id="holder">
+    </div>
+    <p id="upload" class="hidden"><label>Drag & drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
+    <p id="filereader">File API & FileReader API not supported</p>
+    <p id="formdata">XHR2's FormData is not supported</p>
+    <p id="progress">XHR2's upload progress isn't supported</p>
+    <p>Upload progress: <progress id="uploadprogress" min="0" max="100" value="0">0</progress></p>
+    <p>Drag an image from your desktop on to the drop zone above to see the browser both render the preview, but also upload automatically to this server.</p>
+  </article>
+
+
 
   <div class="form-group">
     <%= f.label :item_images, :class => 'form-label' %>
