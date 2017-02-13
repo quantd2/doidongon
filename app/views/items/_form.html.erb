@@ -26,6 +26,13 @@
    </div>
 
   <div class="form-group">
+    <%= f.label :item_images, :class => 'form-label' %>
+    <% f.object.item_images.each do |image| %>
+      <%= image_tag image.image.url(:thumb) %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
     <%= f.collection_select :location_id, @locations, :id, :city,
       {include_blank: 'Please select the location'},
       {class: 'selectpicker chosen-select' 'form-control'} %>
