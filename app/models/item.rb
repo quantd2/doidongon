@@ -51,4 +51,13 @@ class Item < ApplicationRecord
   def unfollow!(other_item)
     relationships.find_by_followed_id(other_item.id).destroy
   end
+
+  def image_list style
+    list = []
+    self.item_images.each do | image |
+      list << image.image.url(style)
+    end
+    list
+  end
+
 end
