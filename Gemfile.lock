@@ -58,6 +58,7 @@ GEM
     bower-rails (0.11.0)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (1.16.0)
     capybara (2.12.0)
       addressable
       mime-types (>= 1.16)
@@ -271,6 +272,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   bower-rails
   byebug
+  cancancan
   capybara
   coffee-rails (~> 4.2)
   devise

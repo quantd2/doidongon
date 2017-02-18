@@ -8,6 +8,11 @@ namespace :db do
                   password_confirmation: "foobar",
                   admin: true)
 
+    User.create!( email: "robin@gmail.com",
+                  phone: "555555550",
+                  password: "foobar",
+                  password_confirmation: "foobar")
+
     99.times do
       password = "password"
       User.create!( email: Faker::Internet.email,

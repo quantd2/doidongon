@@ -29,6 +29,7 @@
       <% (3 - followers_items.size).times do %>
         <div class="following col-md-3">
           <%= image_tag("/images/ff.jpg", class: "rounded float-left") %>
+          <%= render "follow", item: item %>
         </div>
       <% end %>
     </li>

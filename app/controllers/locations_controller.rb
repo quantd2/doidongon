@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     @locations = Location.all
+    authorize! :index, @location
   end
 
   # GET /locations/1
@@ -35,6 +36,7 @@ class LocationsController < ApplicationController
         format.json { render json: @location.errors, status: :unprocessable_entity }
       end
     end
+    #authorize! :create, @location
   end
 
   # PATCH/PUT /locations/1

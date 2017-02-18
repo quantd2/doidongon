@@ -15,6 +15,12 @@
         <li><%= link_to "Post Item", new_user_session_path %></li>
         <li><%= link_to "Log In", new_user_session_path %></li>
       <% end %>
+      <% if can? :index, Location %>
+        <li><%= link_to 'Locations', locations_path %></li>
+      <% end %>
+      <% if can? :index, Category %>
+        <li><%= link_to 'Categories', categories_path %></li>
+      <% end %>
       </ul>
     </nav>
     </div>
