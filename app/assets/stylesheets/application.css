@@ -15,4 +15,5 @@
  *= require 'bootstrap-sass-official'
  *= require 'bootstrap3-dialog'
  *= require 'font-awesome'
+ *= require dropzone/dropzone
  */

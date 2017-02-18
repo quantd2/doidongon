@@ -16,11 +16,8 @@
 class ItemImage < ApplicationRecord
   belongs_to :item
   has_attached_file :image,
-                    :styles => { :medium => "300x300>", :thumb => "100x100#" },
-                    :default_url => "/images/missing/:styles/potato.png"
+                    :styles => { :medium => "300x300>", :thumb => "100x100#" }
   validates_attachment_content_type :image,
       :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/,
       :message => 'file type is not allowed (only jpeg/png/gif images)'
-  attr_accessor :delete_image
-  before_validation { image.clear if delete_image == '1' }
 end

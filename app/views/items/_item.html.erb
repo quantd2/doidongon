@@ -1,20 +1,28 @@
 <ul class="list-group">
   <li class="list-group-item clearfix">
-  <h3><%= item.name %></h3>
-  <% if item.item_images.exists? %>
-    <div class="media">
-      <%= link_to image_tag(item.item_images.first.image.url(:thumb),
-        class: 'media-object'),
-        #item.item_images.first.image.url,
-        item_path(item),
-        target: '_blank' %>
+    <div class="primary-item">
+    <h3><%= link_to item.name, item_path(item), target: '_blank' %></h3>
+    <% if item.item_images.exists? %>
+      <div class="media">
+        <%= link_to image_tag(item.item_images.first.image.url(:thumb),
+          class: 'media-object'),
+          #item.item_images.first.image.url,
+          item_path(item),
+          target: '_blank' %>
+      </div>
+    <% else %>
+      No attachment available!
+    <% end %>
+    <%= link_to 'Delete', item,
+        :method => :delete,
+        data: {confirm: "Delete Item: #{item.name}"},
+        :class => 'btn btn-sm btn-danger clear-fix pull-right' %>
     </div>
-  <% else %>
-    No attachment available!
-  <% end %>
-  <%= link_to 'Delete', item,
-      :method => :delete,
-      data: {confirm: "Delete Item: #{item.name}"},
-      :class => 'btn btn-sm btn-danger clear-fix pull-right' %>
-</li>
+    <div class="following">
+      <% followers_items = item.followers_items %>
+      <% followers_items.each do |follower| %>
+        <%= link_to follower.name, item_path(follower), target: '_blank' %>
+      <% end %>
+    </div>
+  </li>
 </ul>

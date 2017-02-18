@@ -11,6 +11,12 @@ describe "Static pages" do
     it { expect have_selector('h1', text: 'Give2Get') }
     it { expect(page).to have_selector('title',
         :text => full_title(''), :visible => false) }
+
+    it "should list all item" do
+      user.feed.each do |item|
+        page.should have selector("li##{item.id}", text: item.name)
+      end
+    end
   end
 
 

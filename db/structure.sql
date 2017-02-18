@@ -29,6 +29,45 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: enforce_relationship_count(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION enforce_relationship_count() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+
+      DECLARE
+        max_relationships_count INTEGER := 3;
+        following_count INTEGER := 0;
+        followed_count INTEGER := 0;
+
+      BEGIN
+
+        LOCK TABLE relationships IN EXCLUSIVE MODE;
+
+        SELECT INTO following_count COUNT(*)
+        FROM relationships
+        WHERE follower_id = NEW.follower_id;
+        RAISE NOTICE 'following_count is currently %', following_count;
+
+        SELECT INTO followed_count COUNT(*)
+        FROM relationships
+        WHERE followed_id = NEW.followed_id;
+        RAISE NOTICE 'followed_count is currently %', followed_count;
+
+        IF following_count > max_relationships_count THEN
+          RAISE EXCEPTION 'Cannot insert more than % following for each item.', max_relationships_count;
+        END IF;
+
+        IF followed_count > max_relationships_count THEN
+          RAISE EXCEPTION 'Cannot insert more than % followed for each item.', max_relationships_count;
+        END IF;
+
+        RETURN NEW;
+      END $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -82,6 +121,7 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 CREATE TABLE item_images (
     id integer NOT NULL,
+    image_name character varying,
     item_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -437,6 +477,13 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: enforce_relationship_count_trg; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER enforce_relationship_count_trg BEFORE INSERT OR UPDATE ON relationships FOR EACH ROW EXECUTE PROCEDURE enforce_relationship_count();
+
+
+--
 -- Name: fk_rails_18c95d5ce3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -488,6 +535,9 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170201040810'),
 ('20170201141753'),
 ('20170202101914'),
-('20170205085934');
+('20170205085934'),
+('20170215040919'),
+('20170217103927'),
+('20170217103928');
 
 

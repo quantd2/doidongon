@@ -81,24 +81,14 @@ class ItemsController < ApplicationController
 
   def set_image
     if params[:images]
-      #===== The magic is here ;)
       params[:images].each { |image|
         @item.item_images.create(image: image)
       }
     end
   end
 
-  # => def clear_default_image
-  #   if @item.item_images.count > 1
-  #      images = @item.item_images.image_name
-  #      images.each { |image|
-  #        image.image_file_name.include "potato"
-  #      }
-  #   end
-  # end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:name, :description, :location_id, :category_id)
+    params.require(:item).permit(:name, :description, :location_id, :category_id)#, :item_image)
   end
 end
