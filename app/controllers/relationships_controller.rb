@@ -1,10 +1,19 @@
 class RelationshipsController < ApplicationController
-  before_action :set_item
+  #before_action :set_item
+
+  def new
+    set_item
+    @items = current_user.items
+  end
 
   def create
     @items = current_user.items
-    @followed_item = Item.find(params[:relationship][:followed_id])
-    @item.follow!(@followed_item)
+    @follower_item = Item.find(params[:relationship][:follower_id])
+    begin
+      @follower_item.follow!(@@item)
+    rescue Exception => e
+      flash[:alert] = 'the item has followed maximum 3 others.'
+    end
     redirect_to root_path
   end
 
@@ -14,7 +23,10 @@ class RelationshipsController < ApplicationController
     # redirect to @user
   end
 
+  private
+
   def set_item
-    @item = Item.find(params[:id])
+    @@item = Item.find(params[:item_id])
   end
+
 end

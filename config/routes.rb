@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :relationships, only: [:new, :create, :destroy]
   end
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: [:new]#, :create, :destroy]
 
   devise_for :users, path_prefix: 'd'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

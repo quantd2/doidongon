@@ -62,14 +62,14 @@ class Item < ApplicationRecord
   end
 
   def check_following_limit relationship
-    if self.relationships.size > 2
+    if self.relationships.count > 2
       errors.add(:relationships, message: 'you can just follow maximum 3 items')
       raise Exception.new 'you can just follow maximum 3 items'
     end
   end
 
   def check_followed_limit reverse_relationship
-    if self.reverse_relationships.size > 2
+    if self.reverse_relationships.count > 2
       errors.add(:reverse_relationships, message: 'this item has been already followed by mazimum 3 items')
       raise Exception.new 'this item has been already followed by mazimum 3 items'
     end

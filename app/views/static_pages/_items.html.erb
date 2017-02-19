@@ -28,8 +28,8 @@
       <% end %>
       <% (3 - followers_items.size).times do %>
         <div class="following col-md-3">
-          <%= image_tag("/images/ff.jpg", class: "rounded float-left") %>
-          <%= render "follow", item: item %>
+          <%= link_to image_tag("/images/ff.jpg", class: "rounded float-left"),
+            new_item_relationship_path(item), remote: true %>
         </div>
       <% end %>
     </li>
