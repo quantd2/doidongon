@@ -1,0 +1,8 @@
+$(document).ready(function() {
+  $('#modal').click(function() {
+    $('#modal').modal('hide');
+  });
+});
+
+$('#modal').html('<%= j render("new") %>');
+$('#modal').modal();
