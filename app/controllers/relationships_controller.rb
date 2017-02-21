@@ -1,8 +1,9 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
+  #before_action :set_item
+  respond_to :js
 
   def new
-    respond_to :html
     set_item
     @items = current_user.items
   end
