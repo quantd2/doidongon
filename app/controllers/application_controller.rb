@@ -15,14 +15,23 @@ class ApplicationController < ActionController::Base
   #   redirect_to new_user_session_path
   # end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    puts "*************test****************"
-    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}
-    render :file => "#{Rails.root}/public/404.html", :status => 403, :layout => false
-    respond_to do |format|
-      format.json { head :forbidden }
-      format.html { redirect_to root_path, :alert => exception.message }
-      format.js
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   puts "*************test****************"
+  #   Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}
+  #   render :file => "#{Rails.root}/public/404.html", :status => 403, :layout => false
+  #   respond_to do |format|
+  #     format.json { head :forbidden }
+  #     format.html { redirect_to root_path, :alert => exception.message }
+  #     format.js
+  #   end
+  # end
+
+  def after_sign_in_path_for(resource)
+    sign_in_url = new_user_session_url
+    if request.referer == sign_in_url
+      super
+    else
+      stored_location_for(resource) || request.referer || root_path
     end
   end
 
@@ -30,11 +39,12 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       super
     else
-     #redirect_to new_user_session_path, flash[:alert] => 'if you want to add a notice'
-     ## if you want render 404 page
-      #flash[:alert] = 'if you want to add a notice'
-      render "devise/registrations/new"
-      #redirect_to url_for(:controller => :sessions, :action => :new)
+      #render "devise/sessions/new"
+      respond_to do |format|
+        format.json { head :forbidden }
+        format.html { render "devise/sessions/new" }
+        format.js { render "devise/sessions/new" }
+      end
     end
   end
 end

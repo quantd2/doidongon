@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
+
   before_action :verify_is_admin, except: [:show]
 
   def index

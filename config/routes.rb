@@ -24,10 +24,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, path_prefix: 'd',
-    :controllers => {sessions: 'sessions', registrations: 'registrations'} do
-      get "sign_in" => "sessions#new"
-      get "sign_out" => "sessions#destroy"
-  end
+    :controllers => {sessions: 'sessions', registrations: 'registrations'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
   get 'dashboard/index'
