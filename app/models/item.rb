@@ -18,7 +18,7 @@ class Item < ApplicationRecord
   #accepts_nested_attributes_for :location
   belongs_to :category
 
-  has_many :item_images, dependent: :delete_all
+  has_many :item_images, dependent: :destroy
   #accepts_nested_attributes_for :item_images
   default_scope {order(:created_at => :desc)}
 

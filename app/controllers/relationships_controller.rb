@@ -24,7 +24,6 @@ class RelationshipsController < ApplicationController
     respond_to do |format|
       format.html {
         flash[:notice] = 'Unfollow successfully.'
-        #redirect_to follower_path
         redirect_to :back
       }
     end
