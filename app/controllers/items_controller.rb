@@ -7,6 +7,19 @@ class ItemsController < ApplicationController
     @items = current_user.items.paginate(page: params[:page])
   end
 
+  def follower_items
+    @items = current_user.items.paginate(page: params[:page])
+  end
+
+  def followed_items
+    @followed_items = []
+    @items = current_user.items.paginate(page: params[:page])
+    @items.each do |item|
+      @followed_items += item.followed_items
+    end
+    @followed_items
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show

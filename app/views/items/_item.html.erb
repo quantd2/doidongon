@@ -18,11 +18,5 @@
         data: {confirm: "Delete Item: #{item.name}"},
         :class => 'btn btn-sm btn-danger clear-fix pull-right' %>
     </div>
-    <div class="following">
-      <% followers_items = item.followers_items %>
-      <% followers_items.each do |follower| %>
-        <%= link_to follower.name, item_path(follower), target: '_blank' %>
-      <% end %>
-    </div>
   </li>
 </ul>

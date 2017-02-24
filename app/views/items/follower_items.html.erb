@@ -1,0 +1,32 @@
+<% @items.each do |item| %>
+  <ul class="list-group">
+    <li class="list-group-item clearfix">
+      <div class="primary-item col-md-3">
+        <h3><%= link_to item.name, item_path(item), target: '_blank' %></h3>
+        <% if item.item_images.exists? %>
+        <%= link_to image_tag(item.item_images.first.image.url(:thumb),
+              class: 'media-object'),
+              item_path(item),
+              target: '_blank' %>
+        <% else %>
+          No attachment available!
+        <% end %>
+      </div>
+      <% followers_items = item.followers_items %>
+      <% followers_items.each do |follower| %>
+        <div class="follower col-md-3">
+          <h4><%= link_to follower.name, item_path(follower), target: '_blank' %></h4>
+          <% if follower.item_images.exists? %>
+          <%= link_to image_tag(follower.item_images.first.image.url(:thumb),
+                class: 'media-object'),
+                item_path(follower),
+                target: '_blank' %>
+          <% else %>
+            No attachment available!
+          <% end %>
+          <%= link_to "Unfollow", item_relationship_path(item, follower), method: :delete, data: { :confirm => "Really?" }, class: "btn btn-danger btn-primary" %>
+        </div>
+      <% end %>
+    </li>
+  </ul>
+<% end %>

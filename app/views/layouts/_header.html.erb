@@ -7,8 +7,15 @@
       <ul class="nav navbar-nav pull-right">
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Help", help_path %></li>
-      <li><%= link_to "Post Item", new_item_path %></li>
-      <li><%= link_to "My Items", items_path %></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Items
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Post Item", new_item_path %></li>
+          <li><%= link_to "My follower items", follower_path %></li>
+          <li><%= link_to "My followed items", followed_path %></li>
+        </ul>
+      </li>
       <% if user_signed_in? %>
         <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
       <% else %>

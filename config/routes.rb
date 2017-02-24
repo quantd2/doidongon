@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # get 'users/index'
-  #match '/users',   to: 'users#index', via: 'get'
 
   match '/help', to: 'static_pages#help', via: [:get]
   match '/about', to: 'static_pages#about', via: [:get]
@@ -17,11 +15,11 @@ Rails.application.routes.draw do
 
   # resources :items
   resources :items do
-    member do
-      get :following, :followers
-    end
     resources :relationships, only: [:new, :create, :destroy]
   end
+
+  get "followed", to: 'items#followed_items'
+  get "follower", to: 'items#follower_items'
 
   devise_for :users, path_prefix: 'd',
     :controllers => {sessions: 'sessions', registrations: 'registrations'}

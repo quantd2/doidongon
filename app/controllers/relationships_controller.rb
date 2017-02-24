@@ -17,15 +17,27 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    # @user = Relationship.find(params[:id]).followed
-    # current user.unfollow!(@user)
-    # redirect to @user
+    set_item
+    @items = current_user.items
+    @follower_item = Item.find(params[:id])
+    @follower_item.unfollow!(@@item)
+    respond_to do |format|
+      format.html {
+        flash[:notice] = 'Unfollow successfully.'
+        #redirect_to follower_path
+        redirect_to :back
+      }
+    end
   end
 
   private
 
   def set_item
     @@item = Item.find(params[:item_id])
+  end
+
+  def relationship_params
+    params.require(:relationship).permit(:follower_id)
   end
 
 end
