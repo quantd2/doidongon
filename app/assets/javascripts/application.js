@@ -16,3 +16,19 @@
 //= require bootstrap
 //= require dropzone
 //= require_tree .
+
+$(function () {
+  // Sorting and pagination links.
+  // $('.pagination a').on('click',
+  //   function () {
+  //     $.getScript(this.href);
+  //     return false;
+  //   }
+  // );
+
+  // Search form.
+  $('.search-form').submit(function () {
+    $.get(this.action, $(this).serialize(), null, 'script');
+    return false;
+  });
+});

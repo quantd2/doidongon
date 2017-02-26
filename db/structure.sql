@@ -27,6 +27,20 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: pg_trgm; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_trgm; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pg_trgm IS 'text similarity measurement and index searching based on trigrams';
+
+
 SET search_path = public, pg_catalog;
 
 --
@@ -477,6 +491,20 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: items_lower_description; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX items_lower_description ON items USING gin (lower(description) gin_trgm_ops);
+
+
+--
+-- Name: items_lower_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX items_lower_name ON items USING btree (lower((name)::text) varchar_pattern_ops);
+
+
+--
 -- Name: enforce_relationship_count_trg; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -538,6 +566,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170205085934'),
 ('20170215040919'),
 ('20170217103927'),
-('20170217103928');
+('20170217103928'),
+('20170225062241');
 
 
