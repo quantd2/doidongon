@@ -42,3 +42,8 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
 
 end
+
+
+class UserSerializer < ActiveModel::Serializer
+ attributes :id, :avatar
+end

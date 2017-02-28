@@ -7,7 +7,6 @@ class StaticPagesController < ApplicationController
 
   def home
     if params[:keywords].present?
-      byebug
       @keywords = params[:keywords]
       item_search_term = ItemSearchTerm.new(@keywords)
       @items = Item.where(
@@ -24,10 +23,6 @@ class StaticPagesController < ApplicationController
   end
 
   def help
-    respond_to do |format|
-      format.html {}
-      format.json { render json: @item }
-    end
   end
 
   def about

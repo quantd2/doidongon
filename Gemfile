@@ -41,6 +41,8 @@ gem 'bootstrap-will_paginate'
 gem 'dropzonejs-rails'
 gem 'cancancan'
 gem 'faker'
+gem 'angular-rails-templates'
+gem 'active_model_serializers'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

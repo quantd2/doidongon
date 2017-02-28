@@ -21,8 +21,7 @@ Rails.application.routes.draw do
   get "followed", to: 'items#followed_items'
   get "follower", to: 'items#follower_items'
 
-  devise_for :users, path_prefix: 'd',
-    :controllers => {sessions: 'sessions', registrations: 'registrations'}
+  devise_for :users, path_prefix: 'd'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
   get 'dashboard/index'

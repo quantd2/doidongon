@@ -35,16 +35,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authenticate_user!
-    if user_signed_in?
-      super
-    else
-      #render "devise/sessions/new"
-      respond_to do |format|
-        format.json { head :forbidden }
-        format.html { render "devise/sessions/new" }
-        format.js { render "devise/sessions/new" }
-      end
-    end
-  end
+  # def authenticate_user!
+  #   if user_signed_in?
+  #     super
+  #   else
+  #     #render "devise/sessions/new"
+  #     respond_to do |format|
+  #       format.json { head :forbidden }
+  #       format.html {}
+  #       format.js { render "devise/sessions/new" }
+  #     end
+  #   end
+  # end
 end

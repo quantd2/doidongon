@@ -1,6 +1,6 @@
 <% provide(:title, 'Home') %>
 
-<div class="row" ng-controller="ItemSearchController as search">
+<div class="row">
   <div id="modal" class="modal fade"></div>
   <h1>Give2Get</h1>
   <p>
@@ -8,7 +8,7 @@
     <a href="http://give2get.com/">give2get</a>
     web app.
   </p>
-  <section class="search-form">
+  <div class="search-form" ng-controller="ItemSearchController as search">
     <form>
       <div class="input-group input-group-lg">
         <label for="keywords" class="sr-only">Keywords</label>
@@ -23,13 +23,13 @@
         </span>
       </div>
     </form>
-  </section>
-  <div class="items">
-    <li class="list-group-item clearfix" ng-repeat="item in search.items">
-    <h2 class="h3">
-    {{ item.name }} {{ item.description }}
-    </h2>
-    </li>
+    <div class="items">
+      <li class="list-group-item clearfix" ng-repeat="item in search.items">
+      <h2 class="h3">
+      {{ item.name }} {{ item.description }}
+      </h2>
+      </li>
+    </div>
   </div>
   <%= render 'relationships/dialog' %>
 </div>
