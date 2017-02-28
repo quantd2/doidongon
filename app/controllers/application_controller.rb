@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar, :phone])
     #devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :avatar) }
   end
 
@@ -27,11 +27,15 @@ class ApplicationController < ActionController::Base
   # end
 
   def after_sign_in_path_for(resource)
+    # byebug
     sign_in_url = new_user_session_url
+    sign_up_url = new_user_registration_url
     if request.referer == sign_in_url
       super
+    elsif request.referer == sign_up_url
+      root_path
     else
-      stored_location_for(resource) || request.referer || root_path
+      stored_location_for(resource) || request.referer
     end
   end
 

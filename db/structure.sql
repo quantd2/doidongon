@@ -135,6 +135,7 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 CREATE TABLE item_images (
     id integer NOT NULL,
+    image_name character varying,
     item_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -291,6 +292,7 @@ CREATE TABLE users (
     last_sign_in_ip inet,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    username character varying,
     avatar_file_name character varying,
     avatar_content_type character varying,
     avatar_file_size integer,
@@ -549,9 +551,11 @@ SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES
 ('20170128105544'),
+('20170128120004'),
 ('20170130070624'),
 ('20170130072508'),
 ('20170130072822'),
+('20170130072851'),
 ('20170131085617'),
 ('20170131090138'),
 ('20170131092735'),
@@ -561,6 +565,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170202101914'),
 ('20170205085934'),
 ('20170215040919'),
+('20170217103927'),
 ('20170217103928'),
 ('20170225062241');
 
