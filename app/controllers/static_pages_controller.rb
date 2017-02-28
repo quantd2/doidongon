@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
 
   def home
     if params[:keywords].present?
+      byebug
       @keywords = params[:keywords]
       item_search_term = ItemSearchTerm.new(@keywords)
       @items = Item.where(

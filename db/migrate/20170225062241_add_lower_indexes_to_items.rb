@@ -1,6 +1,9 @@
 class AddLowerIndexesToItems < ActiveRecord::Migration[5.0]
   def up
     execute %{
+      CREATE EXTENSION IF NOT EXISTS pg_trgm
+    }
+    execute %{
       CREATE INDEX
         items_lower_name
       ON
