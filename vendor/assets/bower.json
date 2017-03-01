@@ -1,12 +1,6 @@
 {
   "name": "dsl-generated-dependencies",
   "dependencies": {
-    "bootstrap-sass-official": "latest",
-    "angular": "~> 1.6.1",
-    "angular-ui-router": "latest",
-    "angular-base64-upload": "latest"
-  },
-  "resolutions": {
-    "angular": "1.6.1"
+    "bootstrap-sass-official": "latest"
   }
 }

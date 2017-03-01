@@ -12,9 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular
-//= require angular-ui-router
-//= require angular-rails-templates
-//= require angular-base64-upload
 //= require bootstrap
 //= require_tree .
