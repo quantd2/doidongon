@@ -8,22 +8,10 @@
     web app.
   </p>
   <div class="search-form">
-    <form>
-      <div class="input-group input-group-lg">
-        <label for="keywords" class="sr-only">Keywords</label>
-        <input type="text" name="keywords"
-                class="form-control input-lg"
-                placeholder="Item Name or Description"
-                ng-model="search.keywords">
-        <span class="input-group-btn">
-          <button class="btn btn-primary btn-lg">
-            Search Items
-          </button>
-        </span>
-      </div>
-    </form>
-    <div class="items">
-      <%= render "items" %>
-    </div>
+    <%= render "search_form" %>
+  </div>
+  <div class="items">
+    <%= render "items" %>
+  </div>
   </div>
 </div>

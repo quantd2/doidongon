@@ -12,7 +12,10 @@ class StaticPagesController < ApplicationController
       @items = Item.where(
         item_search_term.where_clause,
         item_search_term.where_args).
-        order(item_search_term.order).paginate(page: params[:page])
+        order(item_search_term.order)
+      filtering_params(params).each do |key, value|
+        @items = @items.public_send(key, value) if value.present?
+      end
     else
       @items = []
     end
@@ -25,5 +28,12 @@ class StaticPagesController < ApplicationController
   end
 
   def contact
+  end
+
+  private
+
+  # A list of the param names that can be used for filtering the Product list
+  def filtering_params(params)
+    params[:item].slice(:location_filter, :category_filter)
   end
 end

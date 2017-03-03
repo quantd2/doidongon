@@ -21,6 +21,8 @@ class Item < ApplicationRecord
   has_many :item_images, dependent: :destroy
   #accepts_nested_attributes_for :item_images
   default_scope {order(:created_at => :desc)}
+  scope :location_filter, -> (location_id) { where location_id: location_id }
+  scope :category_filter, -> (category_id) { where category_id: category_id }
 
   has_many :relationships,
             foreign_key: "follower_id",

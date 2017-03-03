@@ -11,16 +11,7 @@
   <body ng-app="give2get">
     <%= render 'layouts/header'%>
     <div class="container">
-      <% if notice.present? %>
-        <aside class="alert alert-info">
-          <%= flash[:notice] %>
-        </aside>
-      <% end %>
-      <% if alert.present? %>
-        <aside class="alert alert-danger">
-          <%= alert %>
-        </aside>
-      <% end %>
+      <%= render 'layouts/messages' %>
       <%= yield %>
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
