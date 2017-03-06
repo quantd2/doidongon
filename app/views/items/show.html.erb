@@ -16,6 +16,10 @@
 </p>
 
 <%= carousel_for(@item.image_list :medium) %>
-
+<%= link_to 'Delete', @item,
+    :method => :delete,
+    data: {confirm: "Delete Item: @item.name}"},
+    :class => 'btn btn-sm btn-danger clear-fix pull-right' %>
+</div>
 <%= link_to 'Edit', edit_item_path(@item) %>
 <%= link_to 'Back', items_path %>

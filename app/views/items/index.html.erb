@@ -1,5 +1,5 @@
 <div class="row">
-  <h3>My follower<%= pluralize( @items.count, 'Item') %></h3>
+  <h3>My <%= pluralize( @items.count, 'Item') %></h3>
   <div class="items">
     <%= render @items %>
   </div>

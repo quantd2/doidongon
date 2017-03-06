@@ -1,36 +1,26 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#holder {
-  border: 10px
-  dashed #ccc; width: 300px;
-  min-height: 300px;
-  margin: 20px
-  auto;
+
+.list-group {
+  height: 220px;
 }
 
-#holder.hover {
-  border: 10px dashed #0c0;
+.list-group-item {
+  padding: 0 0 0 0;
 }
 
-#holder img {
-  display: block;
-  margin: 10px auto;
+.exchanged-items {
+  // position: absolute;
 }
 
-#holder p {
-  margin: 10px;
-  font-size: 14px;
+.item-name {
+  position: relative;
+  left: 20px;
 }
 
-progress { width: 100%; }
-
-progress:after { content: '%'; }
-
-.fail {
-  background: #c00;
-  padding: 2px;
-  color: #fff;
+.exchanged-items-submitted {
+  height: 100px;
+  position: relative;
+  top: -20px ;
 }
-
-.hidden { display: none !important;}

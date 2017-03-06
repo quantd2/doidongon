@@ -1,22 +1,40 @@
 <ul class="list-group">
   <li class="list-group-item clearfix">
-    <div class="primary-item">
-    <h3><%= link_to item.name, item_path(item), target: '_blank' %></h3>
-    <% if item.item_images.exists? %>
-      <div class="media">
-        <%= link_to image_tag(item.item_images.first.image.url(:thumb),
-          class: 'media-object'),
-          #item.item_images.first.image.url,
-          item_path(item),
-          target: '_blank' %>
-      </div>
-    <% else %>
-      No attachment available!
-    <% end %>
-    <%= link_to 'Delete', item,
-        :method => :delete,
-        data: {confirm: "Delete Item: #{item.name}"},
-        :class => 'btn btn-sm btn-danger clear-fix pull-right' %>
+    <div class="my-items col-md-6 col-xs-12">
+      <% if item.item_images.exists? %>
+        <div class="media pull-left">
+          <%= link_to image_tag(item.item_images.first.image.url(:small),
+            class: 'media-object'),
+            item_path(item),
+            target: '_blank' %>
+        </div>
+      <% else %>
+        No attachment available!
+      <% end %>
+      <h3><%= link_to item.name, item_path(item), class: 'item-name', target: '_blank' %></h3>
+    </div>
+    <div class="exchanged-items col-md-6 col-xs-6">
+      <% followers_items = item.followers_items %>
+      <% followers_items.each do |follower| %>
+        <div class="exchanged-items-submitted">
+          <div class="media pull-left">
+            <%= link_to image_tag(follower.item_images.first.image.url(:thumb),
+              class: 'media-object'),
+              item_path(item),
+              target: '_blank' %>
+          </div>
+          <h3><%= link_to follower.name, item_path(follower), class: 'item-name', target: '_blank' %></h3>
+        </div>
+        <hr>
+      <% end %>
+      <% (2 - followers_items.size).times do %>
+        <div class="exchanged-items-holder">
+          <div class="media pull-left">
+          <%= link_to image_tag("/images/ff.jpg", class: "media-object", size: "100x100"),
+            new_item_relationship_path(item)%>
+          </div>
+        </div>
+      <% end %>
     </div>
   </li>
 </ul>
