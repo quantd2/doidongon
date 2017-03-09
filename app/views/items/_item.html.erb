@@ -25,7 +25,6 @@
           </div>
           <h3><%= link_to follower.name, item_path(follower), class: 'item-name', target: '_blank' %></h3>
         </div>
-        <hr>
       <% end %>
       <% (2 - followers_items.size).times do %>
         <div class="exchanged-items-holder">
@@ -33,6 +32,7 @@
           <%= link_to image_tag("/images/ff.jpg", class: "media-object", size: "100x100"),
             new_item_relationship_path(item)%>
           </div>
+          <h3><%= link_to image_tag('/images/FaceBookIcon.png'), 'http://www.facebook.com/sharer.php?u='+request.fullpath, :target => :blank %></h3>
         </div>
       <% end %>
     </div>
