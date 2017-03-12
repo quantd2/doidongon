@@ -2,20 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.list-group-item {
-  padding: 0 0 0 0;
-  height: 221px;
-  // position: absolute
+
+.my-items, .exchanged-items{
+  height: 297px;
+  margin-top: 20px;
+}
+
+.item-description {
+  width: 22em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
-.item-name {
-  // position: relative;
-  // left: 20px;
-}
-
-.exchanged-items-submitted, .exchanged-items-holder {
-  // height: 100px;
-  // position: relative;
-  // top: -20px ;
+.item-image:hover {
+  outline: 1px solid black;
 }

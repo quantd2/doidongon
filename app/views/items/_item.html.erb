@@ -1,38 +1,38 @@
 <div class="my-items col-lg-6 col-md-6 col-sm-6">
   <% if item.item_images.exists? %>
-    <div class="media">
-      <%= link_to image_tag(item.item_images.first.image.url(:small),
-        class: 'media-object'),
-        item_path(item),
-        target: '_blank' %>
-    </div>
+    <%= link_to image_tag(item.item_images.first.image.url(:small),
+      class: 'item-image'),
+      item_path(item),
+      target: '_blank'%>
   <% else %>
     No attachment available!
   <% end %>
-  <p><%= link_to item.name, item_path(item), class: 'item-name', target: '_blank' %></p>
+  <div class="item-info">
+    <p><%= link_to item.name, item_path(item), class: 'item-name', target: '_blank' %></p>
+    <p class="item-description"><%= item.description %></p>
+  </div>
 </div>
 <div class="exchanged-items col-lg-6 col-md-6 col-sm-6">
-  <div class="row">
-    <% followers_items = item.followers_items %>
-    <% followers_items.each do |follower| %>
-      <div class="exchanged-items-submitted">
-        <div class="media">
-          <%= link_to image_tag(follower.item_images.first.image.url(:thumb),
-            class: 'media-object'),
-            item_path(item),
-            target: '_blank' %>
-        </div>
+  <% followers_items = item.followers_items %>
+  <% followers_items.each do |follower| %>
+    <div class="exchanged-items-submitted">
+      <%= link_to image_tag(follower.item_images.first.image.url(:thumb),
+        class: 'item-image'),
+        item_path(item),
+        target: '_blank' %>
+      <div class="item-info">
         <p><%= link_to follower.name, item_path(follower), class: 'item-name', target: '_blank' %></p>
+        <p class='item-description'><%= item.description %></p>
       </div>
-    <% end %>
-    <% (2 - followers_items.size).times do %>
-      <div class="exchanged-items-holder">
-        <div class="media">
-        <%= link_to image_tag("/images/ff.jpg", class: "media-object", size: "100x100"),
-          new_item_relationship_path(item)%>
-        </div>
-        <p><%= link_to image_tag('/images/FaceBookIcon.png'), 'http://www.facebook.com/sharer.php?u='+request.fullpath, :target => :blank %></p>
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+  <% (2 - followers_items.size).times do %>
+    <div class="exchanged-items-holder">
+      <%= link_to image_tag("/images/ff.jpg", class: "item-image", size: "150x100"),
+        new_item_relationship_path(item)%>
+    </div>
+    <div class="item-info">
+      <p><%= link_to image_tag('/images/FaceBookIcon.png'), 'http://www.facebook.com/sharer.php?u='+request.fullpath, :target => :blank %></p>
+    </div>
+  <% end %>
 </div>
