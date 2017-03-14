@@ -1,8 +1,9 @@
 .box-search-lg {
   //position: relative;
+  //width: 100%;
 }
 
-.location-select > .form-control {
+.location-select .form-control {
   height: 45px;
   width: 20%;
   border-radius: 0;
@@ -11,14 +12,15 @@
   float: left;
 }
 
-.category-select > .form-control {
+.category-select .form-control {
   height: 45px;
   width: 20%;
   border-radius: 0;
   float: left;
+  border-right: 0px;
 }
 
-.search-box > .form-control {
+.search-box .form-control {
   height: 45px;
   width: 40%;
   border-top-left-radius: 6px;
@@ -28,8 +30,57 @@
   float: left;
 }
 
-.box-search-lg > .btn {
+.box-search-lg .btn {
   float: left;
-  width: 10%;
+  width: 110px;
   margin-left: 10px;
+  padding: 10px;
+}
+
+.btn-search-mobile {
+  display: none;
+  float: left;
+}
+
+@media (max-width: 767px) {
+  .box-search-lg > .btn {
+    display: none;
+  }
+
+  .btn-search-mobile {
+    background-image: url(image-path('btn-search.png'));
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 42px;
+    height: 40px;
+    display: block;
+    padding: 0;
+    border: 0;
+    margin-left: 5px;
+    position: absolute;
+    right: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .search-box .form-control {
+    height: 40px;
+    width: 100%;
+    border-top-left-radius: 6;
+    border-bottom-left-radius: 0;
+    border-bottom: 0;
+  }
+
+  .location-select .form-control {
+    height: 40px;
+    width: 50%;
+  }
+
+  .category-select .form-control {
+    clear: both;
+    height: 40px;
+    width: 50%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 6px;
+  }
 }
