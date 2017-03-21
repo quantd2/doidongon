@@ -15,12 +15,11 @@
     <%= f.label :item_images, :class => 'form-label' %>
     <div class="controls">
         <%= file_field_tag "images[]", type: :file,
-          multiple: true, class: 'form-control' %>
+          multiple: true, class: 'form-control item-images'  %>
     </div>
   </div>
 
-  <div class="upload">
-    <%= render "upload" %>
+  <div class="preview">
   </div>
 
   <div class="form-group">
@@ -38,4 +37,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <img src="http://placehold.it/350x150">
 <% end %>
